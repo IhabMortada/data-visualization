@@ -1,0 +1,74 @@
+{
+   "runs": [
+      {
+         "StudyId": "0077720",
+         "RunId": "007-015",
+         "Status": "Successful",
+         "RunDate": "2022/11/30 15:00",
+         "StudyDate": "2022/10/28"
+      },
+      {
+         "StudyId": "0077720",
+         "RunId": "007-014",
+         "Status": "Successful",
+         "RunDate": "2022/11/18 18:54",
+         "StudyDate": "2022/10/28"
+      },
+      {
+         "StudyId": "0077720",
+         "RunId": "007-013",
+         "Status": "Failed",
+         "RunDate": "2022/11/11 14:37",
+         "StudyDate": "2022/10/28"
+      },
+      {
+         "StudyId": "0065387",
+         "RunId": "006-003",
+         "Status": "Successful",
+         "RunDate": "2022/12/14 17:13",
+         "StudyDate": "2022/12/06"
+      },
+      {
+         "StudyId": "0065387",
+         "RunId": "006-002",
+         "Status": "Cancelled",
+         "RunDate": "2022/12/14 16:44",
+         "StudyDate": "2022/12/06"
+      },
+      {
+         "StudyId": "0065387",
+         "RunId": "006-001",
+         "Status": "Successful",
+         "RunDate": "2022/12/07 12:21",
+         "StudyDate": "2022/12/06"
+      },
+      {
+         "StudyId": "0086931",
+         "RunId": "008-041",
+         "Status": "Failed",
+         "RunDate": "2023/02/03 08:51",
+         "StudyDate": "2023/01/16"
+      },
+      {
+         "StudyId": "0086931",
+         "RunId": "008-040",
+         "Status": "Successful",
+         "RunDate": "2023/02/03 08:51",
+         "StudyDate": "2023/01/16"
+      },
+      {
+         "StudyId": "0086931",
+         "RunId": "008-039",
+         "Status": "Successful",
+         "RunDate": "2023/01/26 11:10",
+         "StudyDate": "2023/01/16"
+      },
+      {
+         "StudyId": "0086931",
+         "RunId": "008-038",
+         "Status": "Successful",
+         "RunDate": "2023/01/19 09:30",
+         "StudyDate": "2023/01/16"
+      }
+   ]
+}

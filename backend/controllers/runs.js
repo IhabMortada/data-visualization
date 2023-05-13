@@ -68,21 +68,25 @@ export const createRun = async (req, res) => {
     try {
       const studyId = req.body.studyId;
       const studyDate = req.body.studyDate;
-  
+
       // Get all runs
-      const runs = await getAllRuns();
-  
-      // Filter runs for the current study ID
-      const runsForStudy = runs.filter(run => run.StudyId === studyId);
-  
-      let lastRunId = '000';
+      const data = await readFile(dataPath, 'utf-8');
+        const runs = JSON.parse(data).runs;
+        // Filter runs for the current study ID
+      const runsForStudy = runs.filter(run =>  run.StudyId === studyId);
+        let highestRunIdSuffix = 0;
       if (runsForStudy.length > 0) {
         // Extract the number part of the RunId for the last run
-        lastRunId = runsForStudy[runsForStudy.length - 1].RunId.split('-')[1];
+          runsForStudy.forEach(run=>{
+              const runIdSuffix = parseInt(run?.RunId?.split('-')[1],10);
+                if(runIdSuffix>highestRunIdSuffix){
+                    highestRunIdSuffix=runIdSuffix
+                }
+          })
       }
   
       // Calculate new run id
-      const newRunIdNumber = parseInt(lastRunId, 10) + 1;
+      const newRunIdNumber = highestRunIdSuffix + 1;
       const newRunId = `${studyId.slice(0, 3)}-${newRunIdNumber.toString().padStart(3, '0')}`;
   
       const now = new Date();
@@ -90,17 +94,16 @@ export const createRun = async (req, res) => {
   
       // Create new run object
       const newRun = {
-        id: uuidv4(),
         StudyId: studyId,
         RunId: newRunId,
         Status: 'Successful',
-        RunDate: formattedDate ,
+        RunDate: formattedDate,
         StudyDate: studyDate
       };
   
       // Add new run to runs array and write to file
       runs.push(newRun);
-      await writeRunsToFile(runs);
+      await writeFile(dataPath, JSON.stringify({ runs }), 'utf-8');
   
       res.status(201).json(newRun);
     } catch (error) {

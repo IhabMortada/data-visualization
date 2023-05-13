@@ -20,12 +20,19 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchRunsData()
-  }, [])
+  }, [runs]) // this calls fetchRunsData again when runs state changes
+
+
 
   return (
     <Container>
       <Box my={4}>
-        <NewRunForm addRun={addRun} refreshRuns={fetchRunsData} />
+        <NewRunForm addRun={(data)=> {
+            addRun(data);
+            // this changes runs so useEffect is called again
+            setRuns([...runs,data]);
+        }}
+        />
       </Box>
       <Box my={4}>
         {isLoading ? <CircularProgress /> : <RunList runs={runs} />}

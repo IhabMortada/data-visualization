@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import {
   Table,
   TableBody,
@@ -7,44 +7,84 @@ import {
   TableHead,
   TableRow,
   Paper,
+  TableSortLabel,
+  styled,
 } from "@mui/material"
 import DownloadButton from "./DownloadButton"
 
-// just enhancement to make the code inside return
-// readability easier
-// same in line 41
 const tableHeaders = [
-  { key: "studyID", text: "Study ID" },
-  { key: "runID", text: "Run ID" },
-  { key: "dateOfStudy", text: "Date of Study" },
-  { key: "runDate", text: "Run Date" },
-  { key: "status", text: "Status" },
+  { key: "studyID", text: "Study ID", sortKey: "StudyId" },
+  { key: "runID", text: "Run ID", sortKey: "RunId" },
+  { key: "dateOfStudy", text: "Date of Study", sortKey: "StudyDate" },
+  { key: "runDate", text: "Run Date", sortKey: "RunDate" },
+  { key: "status", text: "Status", sortKey: "Status" },
   { key: "actions", text: "Actions" },
 ]
+//coloring the status
+const StatusTableCell = styled(TableCell)(({ theme, status }) => ({
+  color:
+    status === "Successful"
+      ? theme.palette.success.main
+      : status === "Failed"
+      ? theme.palette.error.main
+      : theme.palette.warning.main,
+}))
 
 const RunList = ({ runs }) => {
-  if (!runs || runs.length === 0) {
-    return <p>No runs available at the moment.</p>
+  //sorting the table functions
+  const [sortBy, setSortBy] = useState(null)
+  const [sortOrder, setSortOrder] = useState("asc")
+
+  const handleSort = (sortKey) => {
+    if (sortKey === sortBy) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+    } else {
+      setSortBy(sortKey)
+      setSortOrder("asc")
+    }
   }
+
+  const sortedRuns = runs.slice().sort((a, b) => {
+    if (!sortBy) {
+      return 0
+    }
+    const cmp = a[sortBy] < b[sortBy] ? -1 : a[sortBy] > b[sortBy] ? 1 : 0
+    return sortOrder === "asc" ? cmp : -cmp
+  })
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            {tableHeaders.map((headerText) => (
-              <TableCell key={headerText.key}>{headerText.text}</TableCell>
+            {tableHeaders.map((header) => (
+              <TableCell key={header.key}>
+                {header.sortKey ? (
+                  <TableSortLabel
+                    active={sortBy === header.sortKey}
+                    direction={sortOrder}
+                    onClick={() => handleSort(header.sortKey)}
+                  >
+                    {header.text}
+                  </TableSortLabel>
+                ) : (
+                  header.text
+                )}
+              </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {runs.map((run) => (
+          {sortedRuns.map((run) => (
             <TableRow key={run.RunId}>
               <TableCell>{run.StudyId}</TableCell>
               <TableCell>{run.RunId}</TableCell>
               <TableCell>{run.StudyDate}</TableCell>
               <TableCell>{run.RunDate}</TableCell>
-              <TableCell>{run.Status}</TableCell>{" "}
+              <StatusTableCell status={run.Status}>
+                {" "}
+                {run.Status}
+              </StatusTableCell>{" "}
               <TableCell>
                 <DownloadButton studyId={run.StudyId} runId={run.RunId} />
               </TableCell>

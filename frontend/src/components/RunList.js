@@ -11,6 +11,7 @@ import {
   styled,
 } from "@mui/material"
 import DownloadButton from "./DownloadButton"
+import colors from "../styles/colors"
 
 const tableHeaders = [
   { key: "studyID", text: "Study ID", sortKey: "StudyId" },
@@ -55,15 +56,16 @@ const RunList = ({ runs }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
+        <TableHead >
+          <TableRow >
             {tableHeaders.map((header) => (
-              <TableCell key={header.key}>
+              <TableCell key={header.key}  sx={{ fontWeight: 'bold', backgroundColor:colors.primary ,color:'#fff' }}>
                 {header.sortKey ? (
                   <TableSortLabel
                     active={sortBy === header.sortKey}
                     direction={sortOrder}
                     onClick={() => handleSort(header.sortKey)}
+                   
                   >
                     {header.text}
                   </TableSortLabel>
@@ -76,7 +78,11 @@ const RunList = ({ runs }) => {
         </TableHead>
         <TableBody>
           {sortedRuns.map((run) => (
-            <TableRow key={run.RunId}>
+            <TableRow key={run.RunId}   sx={{
+              "&:nth-of-type(even)": {
+                backgroundColor: "rgba(0, 0, 0, 0.04)",
+              },
+            }}>
               <TableCell>{run.StudyId}</TableCell>
               <TableCell>{run.RunId}</TableCell>
               <TableCell>{run.StudyDate}</TableCell>

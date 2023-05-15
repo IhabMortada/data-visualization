@@ -49,6 +49,5 @@ export const downloadStudyRun = async (studyId, runId) => {
     headers: { 'Content-Type': 'multipart/form-data' },
 
   });
-  console.log('data',data)
   return data;
 }

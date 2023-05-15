@@ -10,7 +10,7 @@ const DownloadButton = ({ studyId, runId }) => {
   const handleDownload = async () => {
     try {
      const blob = await downloadStudyRun(studyId, runId);
-      return downloadFile(blob);
+      return downloadFile(blob,`${studyId}_${runId}.csv`);
     } catch (error) {
       console.error("Error downloading file", error);
     }

@@ -17,21 +17,9 @@ export const getTransformedRuns = async () => {
 
 
 export const getCurrentFormattedDateTime = () => {
-    const date = new Date();
-
-    const formattedDate = `${date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-    }).replace(/\//g, '/')}`;
-
-    const formattedTime = `${date.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-    })}`;
-
-    const formattedDateTime = `${formattedDate} ${formattedTime}`;
-    return formattedDateTime
+    const now = new Date();
+    const formattedDate = `${now.getFullYear()}/${(now.getMonth()+1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+return formattedDate
 }
 
 // Function to get all runs

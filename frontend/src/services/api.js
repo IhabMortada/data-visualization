@@ -44,7 +44,6 @@ export const getStudyRun = async (studyId, runId) => {
 };
 
 export const downloadStudyRun = async (studyId, runId) => {
-  console.log('before')
   const { data } = await axios.get(`/runs/${studyId}/${runId}/download`, {
     responseType: 'blob',
     headers: { 'Content-Type': 'multipart/form-data' },

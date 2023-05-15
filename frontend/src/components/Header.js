@@ -3,9 +3,7 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Box,
-  Paper,
-  Container,
+  Grid,
 } from "@mui/material"
 import { styled } from "@mui/material/styles"
 import "../styles/styles.css"
@@ -22,9 +20,8 @@ const Header = () => {
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#f5f5f5" }}>
-      <Toolbar>
+        <Toolbar>
         <Logo className="Logo" src={logo} alt="Company Logo" />
-
         <Typography variant="h6 " color="inherit">
           Skin Study Dashboard
         </Typography>

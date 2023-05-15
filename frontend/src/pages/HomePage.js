@@ -3,10 +3,12 @@ import { Container, Box, CircularProgress, Button } from "@mui/material"
 import { getRuns, addRun } from "../services/api"
 import RunList from "../components/RunList"
 import NewRunForm from "../components/NewRunForm"
+import { useSnackbar } from 'notistack';
 
 const HomePage = () => {
   const [runs, setRuns] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+    const { enqueueSnackbar,closeSnackbar } = useSnackbar();
 
   const fetchRunsData = async () => {
     try {
@@ -14,21 +16,26 @@ const HomePage = () => {
       setRuns(data)
       setIsLoading(false)
     } catch (error) {
-      console.error("Error fetching runs", error)
+      console.log("Error fetching runs", error)
+      enqueueSnackbar(`List could not be fetched, server failed with ${error.message}`, { variant: 'error' });
     }
   }
 
   useEffect(() => {
-    fetchRunsData()
-  }, [runs]) // this calls fetchRunsData again when runs state changes
+      fetchRunsData();
+          return () => {
+              closeSnackbar()
+          }
+  }, [runs?.length])
+
 
 
 
   return (
     <Container>
       <Box my={4}>
-        <NewRunForm addRun={(data)=> {
-            addRun(data);
+        <NewRunForm addRun={async (data)=> {
+            await addRun(data);
             // this changes runs so useEffect is called again
             setRuns([...runs,data]);
         }}

@@ -1,0 +1,12 @@
+.header-wrapper {
+    display: 'flex';
+    align-items: 'center';
+    justify-content: left;
+    margin: 500px;
+  }
+  
+  .header-container {
+    display: flex;
+    flex-direction: column;
+  }
+ 

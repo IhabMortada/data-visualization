@@ -1,6 +1,14 @@
 import React from "react"
-import { AppBar, Toolbar, Typography, Box } from "@mui/material"
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  Paper,
+  Container,
+} from "@mui/material"
 import { styled } from "@mui/material/styles"
+import "../styles/styles.css"
 
 // Import your company logo file here
 import logo from "../images/Beiersdorf-logo-2021.png"
@@ -14,11 +22,12 @@ const Header = () => {
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#f5f5f5" }}>
-      <Toolbar sx={{ justifyContent: "space-between" }}>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Logo src={logo} alt="Company Logo" />
-        </Box>
-        <Typography variant="h6 " color="inherit">Skin Study Dashboard</Typography>
+      <Toolbar>
+        <Logo className="Logo" src={logo} alt="Company Logo" />
+
+        <Typography variant="h6 " color="inherit">
+          Skin Study Dashboard
+        </Typography>
       </Toolbar>
     </AppBar>
   )

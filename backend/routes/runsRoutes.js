@@ -1,11 +1,10 @@
 import express from "express";
 import {
   createRun,
-  downloadRun,
   getAllRuns,
   getRun,
 } from "../controllers/runsController.js";
-
+import { downloadRun } from "../controllers/downloadController.js";
 const router = express.Router();
 
 router.get("/api/runs", getAllRuns);

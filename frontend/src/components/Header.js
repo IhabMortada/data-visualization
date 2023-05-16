@@ -28,6 +28,7 @@ const Header = () => {
   const Logo = styled("img")({
     height: "50px",
     marginRight: "10px",
+    paddingTop:"5px"
   });
 
   return (

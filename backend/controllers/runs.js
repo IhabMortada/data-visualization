@@ -2,21 +2,33 @@
 import fs from 'fs';
 import { promisify } from 'util';
 import { v4 as uuidv4 } from 'uuid';
-
+import csv from 'fast-csv';
 
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
 const dataPath = './data/data.json';
 
+
+export const getTransformedRuns = async () => {
+    const data = await readFile(dataPath, 'utf-8');
+    return JSON.parse(data).runs;
+}
+
+
+export const getCurrentFormattedDateTime = () => {
+    const now = new Date();
+    const formattedDate = `${now.getFullYear()}/${(now.getMonth()+1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+return formattedDate
+}
+
 // Function to get all runs
 export const getAllRuns = async (req, res) => {
     try {
-        // Read the data.json file
-        const data = await readFile(dataPath, 'utf-8');
-
+        const runs = await getTransformedRuns();
+        const sortedRuns = runs.sort((a, b) => new Date(b.RunDate) - new Date(a.RunDate));
         // Send back the data as JSON
-        res.status(200).json(JSON.parse(data).runs);
+        res.status(200).json(sortedRuns);
     } catch (error) {
         // Send an error message if something goes wrong
         res.status(500).json({ message: 'Error getting runs' });
@@ -26,8 +38,7 @@ export const getAllRuns = async (req, res) => {
 // Function to get a specific run
 export const getRun = async (req, res) => {
     try {
-        const data = await readFile(dataPath, 'utf-8');
-        const runs = JSON.parse(data).runs;
+        const runs = await getTransformedRuns();
 
         // Find the run with the matching StudyId and RunId
         const run = runs.find(run => run.StudyId === req.params.studyId && run.RunId === req.params.runId);
@@ -42,36 +53,12 @@ export const getRun = async (req, res) => {
     }
 };
 
-// // Function to create a new run
-// export const createRun = async (req, res) => {
-//     try {
-//         const data = await readFile(dataPath, 'utf-8');
-//         const runs = JSON.parse(data).runs;
-
-//         // Create a new run with the provided data and a status of "Successful"
-//         const newRun = { ...req.body, Status: 'Successful' };
-
-//         // Add the new run to the runs array
-//         runs.push(newRun);
-
-//         // Write the updated data back to the file
-//         await writeFile(dataPath, JSON.stringify({ runs }), 'utf-8');
-
-//         res.status(201).json(newRun);
-//     } catch (error) {
-//         res.status(500).json({ message: 'Error creating run' });
-//     }
-// };
-
 // Create a new Run
 export const createRun = async (req, res) => {
     try {
-      const studyId = req.body.studyId;
-      const studyDate = req.body.studyDate;
+      const { studyId, studyDate } = req.body;
 
-      // Get all runs
-      const data = await readFile(dataPath, 'utf-8');
-        const runs = JSON.parse(data).runs;
+        const runs = await getTransformedRuns();
         // Filter runs for the current study ID
       const runsForStudy = runs.filter(run =>  run.StudyId === studyId);
         let highestRunIdSuffix = 0;
@@ -89,15 +76,13 @@ export const createRun = async (req, res) => {
       const newRunIdNumber = highestRunIdSuffix + 1;
       const newRunId = `${studyId.slice(0, 3)}-${newRunIdNumber.toString().padStart(3, '0')}`;
   
-      const now = new Date();
-      const formattedDate = `${now.getFullYear()}/${(now.getMonth()+1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-  
+
       // Create new run object
       const newRun = {
         StudyId: studyId,
         RunId: newRunId,
         Status: 'Successful',
-        RunDate: formattedDate,
+        RunDate: getCurrentFormattedDateTime(),
         StudyDate: studyDate
       };
   
@@ -111,11 +96,11 @@ export const createRun = async (req, res) => {
     }
   };
 
+
 // Function to download a run
 export const downloadRun = async (req, res) => {
     try {
-        const data = await readFile(dataPath, 'utf-8');
-        const runs = JSON.parse(data).runs;
+        const runs = await getTransformedRuns();
 
         // Find the run with the matching StudyId and RunId
         const run = runs.find(run => run.StudyId === req.params.studyId && run.RunId === req.params.runId);
@@ -132,8 +117,12 @@ export const downloadRun = async (req, res) => {
         // The content would be the stringified run object
         // In a real-world scenario, you would probably have a more complex CSV generation logic
         res.setHeader('Content-Type', 'text/csv');
-        res.setHeader('Content-Disposition', 'attachment; filename=run.csv');
-        res.send(`StudyId,RunId,Status,RunDate,StudyDate\n${run.StudyId},${run.RunId},${run.Status},${run.RunDate},${run.StudyDate}`);
+        res.setHeader('Content-Disposition', 'attachment; filename="data.csv"');
+        const csvStream = csv.format({ headers: true });
+        csvStream.pipe(res);
+        csvStream.write(run)
+        csvStream.end();
+
     } catch (error) {
         res.status(500).json({ message: 'Error downloading run' });
     }

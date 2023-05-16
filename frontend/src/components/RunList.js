@@ -7,12 +7,14 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Chip,
   TableSortLabel,
   styled,
 } from "@mui/material"
 import DownloadButton from "./DownloadButton"
 import colors from "../styles/colors"
 import "../styles/styles.css"
+
 const tableHeaders = [
   { key: "studyID", text: "Study ID", sortKey: "StudyId" },
   { key: "runID", text: "Run ID", sortKey: "RunId" },
@@ -21,14 +23,16 @@ const tableHeaders = [
   { key: "status", text: "Status", sortKey: "Status" },
   { key: "actions", text: "Actions" },
 ]
+
 //coloring the status
-const StatusTableCell = styled(TableCell)(({ theme, status }) => ({
-  color:
+const StatusTableCell = styled(Chip)(({ theme, status }) => ({
+  alignSelf:'center',
+  backgroundColor:
     status === "Successful"
-      ? theme.palette.success.main
+      ? theme.palette.success.light
       : status === "Failed"
-      ? theme.palette.error.main
-      : theme.palette.warning.main,
+      ? theme.palette.error.light
+      : theme.palette.warning.light,
 }))
 
 
@@ -79,33 +83,29 @@ const RunList = ({ runs }) => {
                   >
                     {header.text}
                   </TableSortLabel>
-                ) : (
-                  header.text
-                )}
+                ) : (header.text)}
               </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {sortedRuns.map((run) => (
-            <TableRow
-              key={run.RunId}
-              sx={{
-                "&:nth-of-type(even)": {
-                  backgroundColor: "rgba(0, 0, 0, 0.04)",
-                },
-              }}
+          {sortedRuns.map((run) =>(
+              <TableRow
+                key={run.RunId}
+                sx={{
+                  "&:nth-of-type(even)": {
+                    backgroundColor: "rgba(0, 0, 0, 0.04)",
+                  },
+                }}
             >
               <TableCell>{run.StudyId}</TableCell>
               <TableCell>{run.RunId}</TableCell>
               <TableCell>{run.StudyDate}</TableCell>
               <TableCell>{run.RunDate}</TableCell>
-              <StatusTableCell status={run.Status}>
-                {" "}
-                {run.Status}
-              </StatusTableCell>{" "}
+              <TableCell><StatusTableCell status={run.Status} label={run.Status} size='small' /></TableCell>
+
               <TableCell>
-                <DownloadButton studyId={run.StudyId} runId={run.RunId} />
+                <DownloadButton studyId={run.StudyId} runId={run.RunId}/>
               </TableCell>
             </TableRow>
           ))}

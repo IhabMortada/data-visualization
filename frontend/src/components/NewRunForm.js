@@ -1,16 +1,30 @@
 import React, { useState } from 'react';
 import { Button, TextField, Grid } from '@mui/material';
+import {useSnackbar} from "notistack";
 
 
 
 const NewRunForm = ({ addRun }) => {
   const [studyId, setStudyId] = useState('');
   const [studyDate, setStudyDate] = useState('');
+  const [isAddRunLoading, setIsAddRunLoading] = useState()
+  const { enqueueSnackbar,closeSnackbar } = useSnackbar();
 
-  const handleSubmit = (event) => {
-    // event.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsAddRunLoading(true)
     const runData = { studyId, studyDate };
-    addRun(runData);
+    try {
+      await addRun(runData);
+      enqueueSnackbar(`An item with the study ID ${studyId} got successfully created`, {variant: 'success'});
+    }
+    catch(error){
+      enqueueSnackbar(`Item could not be added, Error: ${error.message}`, {variant: 'error'});
+    }
+    finally {
+      setIsAddRunLoading(false)
+      closeSnackbar()
+    }
   };
 
   return (
@@ -43,7 +57,7 @@ const NewRunForm = ({ addRun }) => {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary" disabled={isAddRunLoading}>
             Add New Run
           </Button>
         </Grid>

@@ -26,7 +26,7 @@ const tableHeaders = [
 
 //coloring the status
 const StatusTableCell = styled(Chip)(({ theme, status }) => ({
-  alignSelf:'center',
+  alignSelf: "center",
   backgroundColor:
     status === "Successful"
       ? theme.palette.success.light
@@ -34,9 +34,6 @@ const StatusTableCell = styled(Chip)(({ theme, status }) => ({
       ? theme.palette.error.light
       : theme.palette.warning.light,
 }))
-
-
-
 
 const RunList = ({ runs }) => {
   //sorting the table functions
@@ -83,29 +80,37 @@ const RunList = ({ runs }) => {
                   >
                     {header.text}
                   </TableSortLabel>
-                ) : (header.text)}
+                ) : (
+                  header.text
+                )}
               </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {sortedRuns.map((run) =>(
-              <TableRow
-                key={run.RunId}
-                sx={{
-                  "&:nth-of-type(even)": {
-                    backgroundColor: "rgba(0, 0, 0, 0.04)",
-                  },
-                }}
+          {sortedRuns.map((run) => (
+            <TableRow
+              key={run.RunId}
+              sx={{
+                "&:nth-of-type(even)": {
+                  backgroundColor: "rgba(0, 0, 0, 0.04)",
+                },
+              }}
             >
               <TableCell>{run.StudyId}</TableCell>
               <TableCell>{run.RunId}</TableCell>
               <TableCell>{run.StudyDate}</TableCell>
               <TableCell>{run.RunDate}</TableCell>
-              <TableCell><StatusTableCell status={run.Status} label={run.Status} size='small' /></TableCell>
+              <TableCell>
+                <StatusTableCell
+                  status={run.Status}
+                  label={run.Status}
+                  size="small"
+                />
+              </TableCell>
 
               <TableCell>
-                <DownloadButton studyId={run.StudyId} runId={run.RunId}/>
+                <DownloadButton studyId={run.StudyId} runId={run.RunId} status={run.Status}/>
               </TableCell>
             </TableRow>
           ))}

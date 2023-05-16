@@ -1,6 +1,5 @@
-// routes/routes.js
 import express from 'express';
-import { getAllRuns, getRun, createRun, downloadRun } from '../controllers/runs.js';
+import { getAllRuns, getRun, createRun, downloadRun } from '../controllers/runsController.js';
 
 const router = express.Router();
 

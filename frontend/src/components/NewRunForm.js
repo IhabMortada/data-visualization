@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import { Button, TextField, Grid } from '@mui/material';
+import { Button, TextField, Grid,IconButton } from '@mui/material';
 import {useSnackbar} from "notistack";
+import SyncIcon from '@mui/icons-material/Sync';
 
-
-
-const NewRunForm = ({ addRun }) => {
+const NewRunForm = ({ addRun ,fetchRunsData}) => {
   const [studyId, setStudyId] = useState('');
   const [studyDate, setStudyDate] = useState('');
   const [isAddRunLoading, setIsAddRunLoading] = useState()
-  const { enqueueSnackbar,closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
     setIsAddRunLoading(true)
     const runData = { studyId, studyDate };
     try {
@@ -23,7 +22,7 @@ const NewRunForm = ({ addRun }) => {
     }
     finally {
       setIsAddRunLoading(false)
-      closeSnackbar()
+     
     }
   };
 
@@ -60,7 +59,14 @@ const NewRunForm = ({ addRun }) => {
           <Button type="submit" variant="contained" color="primary" disabled={isAddRunLoading}>
             Add New Run
           </Button>
+        
+          <IconButton color="primary" onClick={fetchRunsData}>
+          <SyncIcon />
+        </IconButton>
+
+
         </Grid>
+
       </Grid>
     </form>
   );

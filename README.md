@@ -17,13 +17,17 @@ To complete this task, I implemented a Single Page Application with the followin
 
 - Header: I designed a creative header with a logo, title, menu, and profile settings to enhance the visual appeal of the application.
 
-- Visualization of Latest Run Details: The application displays the details of the latest run for all StudyIds in an interactive table using the MUI Library. Users can list and sort the information as desired. The displayed information includes the RunId, StudyDate, RunDate, and Status.
+- Visualization of Latest Run Details: The application displays the details of the latest run for all StudyIds in an interactive table using the MUI Library. Users can list, paginate and sort the information as desired. The displayed information includes the RunId, StudyDate, RunDate, and Status.
 
-- Download Functionality: Users can download an empty CSV file for a specific study run by providing the StudyId and RunId. The backend provides the CSV file, and the application creates a notification for runs with a status of "Failed" or "Canceled".
+- A pie chart shows an insight of the number of Runs by Status.
+
+- Download Functionality: Users can download a CSV file for a specific study run depending on StudyId and RunId. The backend generates the CSV file, and the application creates a notification for runs with a status of "Failed" or "Canceled".
 
 - Refresh/Reload Button: The application includes a button that allows users to refresh or reload the runs.
 
 - New Study Run: In addition to the features implemented in Task 1, I added functionality to trigger a new study run. Users can provide the StudyId and StudyDate for the new run. The application generates a RunId based on the StudyId and other conditions. Upon submitting the run, the application updates the data in the `data.json` file and refreshes the UI. Newly submitted study runs immediately enter the "Successful" state.
+
+ 
 
 ## Instructions for Running the Application
 

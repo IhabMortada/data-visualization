@@ -1,7 +1,8 @@
 // src/styles/colors.js
 
 const colors = {
-    primary: "#0032a0 ",
+    white: "#ffffff",
+    primary: "#0032a0",
     secondary: "#ff8800",
     success: "#00bb33",
     warning: "#ffbb33",

@@ -1,28 +1,30 @@
-import React, { useState } from "react"
+import React from "react";
 import {
+  Chip,
+  Paper,
+  styled,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
+  TablePagination,
   TableRow,
-  Paper,
-  Chip,
   TableSortLabel,
-  styled,
-} from "@mui/material"
-import DownloadButton from "./DownloadButton"
-import colors from "../styles/colors"
-import "../styles/styles.css"
+} from "@mui/material";
+import DownloadButton from "./DownloadButton";
+import colors from "../styles/colors";
+import "../styles/styles.css";
+import { useTable } from "../hooks/use-table";
 
 const tableHeaders = [
-  { key: "studyID", text: "Study ID", sortKey: "StudyId" },
-  { key: "runID", text: "Run ID", sortKey: "RunId" },
-  { key: "dateOfStudy", text: "Date of Study", sortKey: "StudyDate" },
-  { key: "runDate", text: "Run Date", sortKey: "RunDate" },
-  { key: "status", text: "Status", sortKey: "Status" },
-  { key: "actions", text: "Actions" },
-]
+  { columnId: "StudyId", text: "Study ID" },
+  { columnId: "RunId", text: "Run ID" },
+  { columnId: "StudyDate", text: "Date of Study" },
+  { columnId: "RunDate", text: "Run Date" },
+  { columnId: "Status", text: "Status" },
+  { columnId: "actions", text: "Actions" },
+];
 
 //coloring the status
 const StatusTableCell = styled(Chip)(({ theme, status }) => ({
@@ -33,29 +35,19 @@ const StatusTableCell = styled(Chip)(({ theme, status }) => ({
       : status === "Failed"
       ? theme.palette.error.light
       : theme.palette.warning.light,
-}))
+}));
 
 const RunList = ({ runs }) => {
-  //sorting the table functions
-  const [sortBy, setSortBy] = useState(null)
-  const [sortOrder, setSortOrder] = useState("asc")
-
-  const handleSort = (sortKey) => {
-    if (sortKey === sortBy) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc")
-    } else {
-      setSortBy(sortKey)
-      setSortOrder("asc")
-    }
-  }
-
-  const sortedRuns = runs.slice().sort((a, b) => {
-    if (!sortBy) {
-      return 0
-    }
-    const cmp = a[sortBy] < b[sortBy] ? -1 : a[sortBy] > b[sortBy] ? 1 : 0
-    return sortOrder === "asc" ? cmp : -cmp
-  })
+  const {
+    page,
+    rowsPerPage,
+    sortBy,
+    sortOrder,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    handleSort,
+    paginatedSortedRuns,
+  } = useTable(runs);
 
   return (
     <TableContainer component={Paper}>
@@ -64,7 +56,7 @@ const RunList = ({ runs }) => {
           <TableRow>
             {tableHeaders.map((header) => (
               <TableCell
-                key={header.key}
+                key={header.columnId}
                 className="table-header"
                 sx={{
                   fontWeight: "bold",
@@ -72,11 +64,11 @@ const RunList = ({ runs }) => {
                   color: "#fff",
                 }}
               >
-                {header.sortKey ? (
+                {header.columnId ? (
                   <TableSortLabel
-                    active={sortBy === header.sortKey}
+                    active={sortBy === header.columnId}
                     direction={sortOrder}
-                    onClick={() => handleSort(header.sortKey)}
+                    onClick={() => handleSort(header.columnId)}
                   >
                     {header.text}
                   </TableSortLabel>
@@ -88,7 +80,7 @@ const RunList = ({ runs }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {sortedRuns.map((run) => (
+          {paginatedSortedRuns.map((run) => (
             <TableRow
               key={run.RunId}
               sx={{
@@ -110,14 +102,27 @@ const RunList = ({ runs }) => {
               </TableCell>
 
               <TableCell>
-                <DownloadButton studyId={run.StudyId} runId={run.RunId} status={run.Status}/>
+                <DownloadButton
+                  studyId={run.StudyId}
+                  runId={run.RunId}
+                  status={run.Status}
+                />
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={runs.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </TableContainer>
-  )
-}
+  );
+};
 
-export default RunList
+export default RunList;

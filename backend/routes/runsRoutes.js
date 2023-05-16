@@ -1,11 +1,16 @@
-import express from 'express';
-import { getAllRuns, getRun, createRun, downloadRun } from '../controllers/runsController.js';
+import express from "express";
+import {
+  createRun,
+  downloadRun,
+  getAllRuns,
+  getRun,
+} from "../controllers/runsController.js";
 
 const router = express.Router();
 
-router.get('/runs', getAllRuns);
-router.get('/runs/:studyId/:runId', getRun);
-router.post('/runs', createRun);
-router.get('/runs/:studyId/:runId/download', downloadRun);
+router.get("/api/runs", getAllRuns);
+router.get("/api/runs/:studyId/:runId", getRun);
+router.post("/api/runs", createRun);
+router.get("/api/runs/:studyId/:runId/download", downloadRun);
 
 export default router;

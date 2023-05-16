@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
-import { Button, TextField, Grid,IconButton } from '@mui/material';
-import {useSnackbar} from "notistack";
-import SyncIcon from '@mui/icons-material/Sync';
+import React, { useState } from "react";
+import { Button, Grid, IconButton, TextField } from "@mui/material";
+import { useSnackbar } from "notistack";
+import SyncIcon from "@mui/icons-material/Sync";
 
-const NewRunForm = ({ addRun ,fetchRunsData}) => {
-  const [studyId, setStudyId] = useState('');
-  const [studyDate, setStudyDate] = useState('');
-  const [isAddRunLoading, setIsAddRunLoading] = useState()
+const NewRunForm = ({ addRun, fetchRunsData }) => {
+  const [studyId, setStudyId] = useState("");
+  const [studyDate, setStudyDate] = useState("");
+  const [isAddRunLoading, setIsAddRunLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    setIsAddRunLoading(true)
+    event.preventDefault();
+    setIsAddRunLoading(true);
     const runData = { studyId, studyDate };
     try {
       await addRun(runData);
-      enqueueSnackbar(`An item with the study ID ${studyId} got successfully created`, {variant: 'success'});
-    }
-    catch(error){
-      enqueueSnackbar(`Item could not be added, Error: ${error.message}`, {variant: 'error'});
-    }
-    finally {
-      setIsAddRunLoading(false)
-     
+      enqueueSnackbar(
+        `An item with the study ID ${studyId} got successfully created`,
+        { variant: "success" }
+      );
+    } catch (error) {
+      enqueueSnackbar(`Item could not be added, Error: ${error.message}`, {
+        variant: "error",
+      });
+    } finally {
+      setIsAddRunLoading(false);
+      setStudyId("");
+      setStudyDate("");
     }
   };
 
@@ -56,20 +60,21 @@ const NewRunForm = ({ addRun ,fetchRunsData}) => {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button type="submit" variant="contained" color="primary" disabled={isAddRunLoading}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={isAddRunLoading}
+          >
             Add New Run
           </Button>
-        
           <IconButton color="primary" onClick={fetchRunsData}>
-          <SyncIcon />
-        </IconButton>
-
-
+            <SyncIcon />
+          </IconButton>
         </Grid>
-
       </Grid>
     </form>
   );
-}
+};
 
 export default NewRunForm;

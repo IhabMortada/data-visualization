@@ -1,13 +1,13 @@
-import { SnackbarProvider } from "notistack"
-import { Collapse } from "@mui/material"
-import "./App.css"
-import HomePage from "./pages/HomePage"
-import Header from "./components/Header"
+import { SnackbarProvider } from "notistack";
+import { Box, Collapse } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import HomePage from "./pages/HomePage";
+import Header from "./components/Header";
+import { theme } from "./styles/theme";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <ThemeProvider theme={theme}>
       <SnackbarProvider
         maxSnack={1}
         anchorOrigin={{
@@ -16,10 +16,13 @@ function App() {
         }}
         TransitionComponent={Collapse}
       >
-        <HomePage />
+        <Box className="App">
+          <Header />
+          <HomePage />
+        </Box>
       </SnackbarProvider>
-    </div>
-  )
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4a54333e-3ee8-41b1-bf25-ee402c336d4e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/helpers/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/use-table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/styles/theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/controllers/runsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/runsController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/middleware/protectConcurrentRequests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/runsRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/runsRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/utils/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/utils/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/DownloadButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DownloadButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/NewRunForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NewRunForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/RefreshButton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/RunList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/RunList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/StatisticsChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/StatisticsChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/helpers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/images/Beiersdorf-neues-logo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/colors.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/colors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/styles.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProjectId" id="2PqYDYqeLCSoucfoN2A7ph6xbSf" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/sara/Downloads/coursera/beirsdorfcase",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/sara/Downloads/coursera/beirsdorfcase/backend/node_modules/prettier",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/public" />
+      <recent name="$PROJECT_DIR$/frontend/src" />
+      <recent name="$PROJECT_DIR$/frontend" />
+      <recent name="$PROJECT_DIR$/frontend/src/styles" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4a54333e-3ee8-41b1-bf25-ee402c336d4e" name="Changes" comment="" />
+      <created>1684185959927</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684185959927</updated>
+      <workItem from="1684185961001" duration="8177000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

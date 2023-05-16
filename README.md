@@ -35,7 +35,7 @@ To run the application locally, please follow these steps:
    - Navigate to the project directory in your terminal to the backend folder.
    - Install the dependencies by running the command: `npm install`.
    - Start the development server with the command: `npm start` or `nodemon Server`.
-   - The server will run by default on `http://localhost:3008` (you can change this port from `frontend/config.js`).
+   - The server will run by default on `http://localhost:3008` (if you want to change it, you should update it as well in `frontend/config.js`).
 
 3. Frontend Setup:
    - Navigate to the project directory in your terminal to the frontend folder.

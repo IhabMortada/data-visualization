@@ -1,6 +1,6 @@
-# Beiersdorf Shared Services: Data Science Hub
+# Company Shared Services: Data Science Hub
 
-This is a project I completed as part of the application process for the Full Stack Developer position at Beiersdorf's Data Science Hub. The project involved implementing a web application that interacts with an AI model for analyzing images of human skin in the context of consumer studies. The application was built using React for the front-end and Node.js for the back-end.
+This is a project I completed as part of the application process for the Full Stack Developer position at a Company's Data Science Hub. The project involved implementing a web application that interacts with an AI model for analyzing images of human skin in the context of consumer studies. The application was built using React for the front-end and Node.js for the back-end.
 
 ## Project Overview
 
@@ -49,9 +49,4 @@ To run the application locally, please follow these steps:
 
 ## Finally
 
-Both tasks have been completed as outlined in the project requirements with some enhancements. You can find the source code for the project in the provided files. If you have any questions or need further clarification, please let me know. I look forward to hearing back from you.
-
-Thank you for considering my application.
-
-Sincerely,
-Ihab Mortada
+Both tasks have been completed as outlined in the project requirements with some enhancements. You can find the source code for the project in the provided files.

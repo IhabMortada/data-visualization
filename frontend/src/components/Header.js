@@ -11,7 +11,7 @@ import {
 import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import logo from "../images/Beiersdorf-logo-2021.png";
+import logo from "../images/Company-logo-2021.png";
 import colors from "../styles/colors";
 
 const Header = () => {
